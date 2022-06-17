@@ -2,12 +2,13 @@ import { Button, Flex, Image, Text } from '@chakra-ui/react'
 import { Product } from '../types'
 import { useState } from 'react'
 import { useCart } from '../providers/CartProvider'
+import { MoreOrLess } from './MoreOrLess'
 export const Item = ({ data }: { data: Product }) => {
     const [inCart, setInCart] = useState<boolean>(false)
     const { addToCart } = useCart()
     const addAndSet = (arg: Product) => {
         addToCart(arg)
-        setInCart(!inCart)
+        setInCart(true)
     }
 
     // const removeAndSet = (arg: string) => {
@@ -16,7 +17,8 @@ export const Item = ({ data }: { data: Product }) => {
     // }
 
     return (
-        <Flex display="flex"
+        <Flex
+            display="flex"
             flexDirection="column"
             gap="16px"
         >
@@ -41,7 +43,7 @@ export const Item = ({ data }: { data: Product }) => {
                 </Text>
             </Flex>
 
-            {(
+            {!inCart && (
                 <Button
                     color="white"
                     border="none"
@@ -58,8 +60,11 @@ export const Item = ({ data }: { data: Product }) => {
                 </Button>
             )}
 
-
-
+            {
+                inCart && (
+                    <MoreOrLess product={data} setInCart={setInCart} />
+                )
+            }
         </Flex>
     )
 }
