@@ -2,14 +2,13 @@ import { Flex, Grid } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
 import api from './api'
-import { ArticleGoncy } from './components/ArticleGoncy'
+import { ItemGoncy } from './components/ItemGoncy'
 import { HeaderGoncy } from './components/HeaderGoncy'
-import { Product } from './types'
 import { TotalProductsButtonGoncy } from './components/TotalProductsButtonGoncy'
 import { FooterGoncy } from './components/FooterGoncy'
+import { useCart } from './providers/CartProvider'
 function App() {
-  const [products, setProducts] = useState<Product[]>([])
-
+  const { products, setProducts, addToCart, removeFromCart } = useCart()
   useEffect(() => {
     api.list().then(setProducts)
   }, [])
@@ -27,7 +26,7 @@ function App() {
         gap="12px"
       >
         {products.map((product) => (
-          <ArticleGoncy data={product} key={product.id} />
+          <ItemGoncy data={product} key={product.id} />
         ))}
       </Grid>
       <TotalProductsButtonGoncy />

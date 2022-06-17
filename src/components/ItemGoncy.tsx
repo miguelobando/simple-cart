@@ -3,7 +3,7 @@ import { Product } from '../types'
 import { DescriptionGoncy } from './DescriptionGoncy'
 import { TitleGoncy } from './TitleGoncy'
 import { ButtonGoncy } from './ButtonGoncy'
-export const ArticleGoncy = ({ data }: { data: Product }) => {
+export const ItemGoncy = ({ data }: { data: Product }) => {
     return (
         <Flex display="flex"
             flexDirection="column"
