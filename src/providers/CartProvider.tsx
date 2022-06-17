@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Product } from '../types'
 interface CartContextType {
-    products: Product[];
-    setProducts: React.Dispatch<React.SetStateAction<Product[]>>
+    cart: Product[];
     addToCart: (product: Product) => void;
     removeFromCart: (id: string) => void;
 }
@@ -11,18 +10,19 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-    const [products, setProducts] = useState<Product[]>([])
+    const [cart, setCart] = useState<Product[]>([])
 
     const addToCart = (product: Product) => {
-        setProducts([...products, product])
+        setCart([...cart, product])
     }
 
     const removeFromCart = (id: string) => {
-        setProducts([...products.filter(e => e.id !== id)])
+        const filtered = cart.filter(e => e.id !== id)
+        setCart([...filtered])
     }
 
     return (
-        <CartContext.Provider value={{ products, setProducts, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     )

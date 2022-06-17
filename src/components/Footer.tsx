@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react"
 
-export const FooterGoncy = () => {
+export const Footer = () => {
     return (
         <Box
             padding="16px"

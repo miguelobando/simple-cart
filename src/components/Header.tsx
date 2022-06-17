@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react"
 
-export const HeaderGoncy = () => {
+export const Header = () => {
     return (
         <Flex justifyContent="flex-start"
             width="100%"
