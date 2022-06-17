@@ -3,7 +3,7 @@ import { Product } from '../types'
 interface CartContextType {
     cart: Product[];
     addToCart: (product: Product) => void;
-    removeFromCart: (id: string) => void;
+    removeFromCart: (product: Product) => void;
 }
 
 
@@ -16,9 +16,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setCart([...cart, product])
     }
 
-    const removeFromCart = (id: string) => {
-        const filtered = cart.filter(e => e.id !== id)
-        setCart([...filtered])
+    const removeFromCart = (product: Product) => {
+        const newArray = [...cart]
+        const index = newArray.indexOf(product)
+        newArray.splice(index, 1)
+        setCart(newArray)
     }
 
     return (

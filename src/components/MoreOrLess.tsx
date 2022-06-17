@@ -10,7 +10,7 @@ export const MoreOrLess = ({ product, setInCart }: MoLInterface) => {
     const { cart, addToCart, removeFromCart } = useCart()
     const productCount = cart.filter(e => e.id === product.id)
     const removeAndSet = (arg: Product) => {
-        removeFromCart(product.id)
+        removeFromCart(arg)
     }
 
     useEffect(() => {
